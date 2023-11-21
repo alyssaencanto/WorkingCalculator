@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Roboto Mono' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Working Calculator</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td colspan="4">
+                <input type="text" id="result" disabled>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" ><input id="cleardel" type="button" onclick="clearInput()" value="CLEAR" ></td>
+            <td colspan="2"><input id="cleardel" type="button"  onclick="del()" value="DEL" ></td>
+        </tr>
+        <tr>
+            <td><input type="button" onclick="appendNumber(1)" value="1"></td>
+            <td><input type="button" onclick="appendNumber(2)" value="2"></td>
+            <td><input type="button" onclick="appendNumber(3)" value="3"></td>
+            <td><input id="operators" type="button" onclick="divide()" value="÷"></td>
+        </tr>
+        <tr>
+            <td><input type="button" onclick="appendNumber(4)" value="4"></td>
+            <td><input type="button" onclick="appendNumber(5)" value="5"></td>
+            <td><input type="button" onclick="appendNumber(6)" value="6"></td>
+            <td><input id="operators" type="button" onclick="multiply()" value="X"></td>
+        </tr>
+        <tr>
+            
+            <td><input type="button" onclick="appendNumber(7)" value="7"></td>
+            <td><input type="button" onclick="appendNumber(8)" value="8"></td>
+            <td><input type="button" onclick="appendNumber(9)" value="9"></td>
+            <td><input id="operators" type="button" onclick="minus()" value="-"></td>
+        </tr>
+        <tr>
+           
+            <td><input type="button" onclick="appendNumber('.')" value="."></td>
+            <td><input type="button" onclick="appendNumber(0)" value="0"></td>
+            <td><input id="equals" type="button" onclick="calculate()" value="="></td>
+            <td><input id="operators" type="button" onclick="add()" value="+"></td>
+        </tr>
+    </table>
+
+
+    <script>
+        let currentInput = "";
+        let currentOperator = "";
+
+        function clearInput() {
+            currentInput = '';
+            currentOperator= '';
+            document.getElementById('result').value = '';
+        }
+
+        function del() {
+            currentInput = currentInput.slice(0, -1);
+            document.getElementById('result').value = currentInput;
+        }
+
+
+        
+        function appendNumber(number) {
+            currentInput += number;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function add() {
+            currentOperator = "+";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function minus() {
+            currentOperator = "-";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function multiply() {
+            currentOperator = "*";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function divide() {
+            currentOperator = "/";
+            currentInput += currentOperator;
+            document.getElementById('result').value = currentInput;
+        }
+
+        function calculate() {
+            const result = eval(currentInput);
+            console.log(result);
+            document.getElementById('result').value = result;
+            currentInput.toString();
+            currentOperator = '';
+        }
+    </script>
+</body>
+</html>
